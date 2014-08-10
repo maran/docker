@@ -144,6 +144,7 @@ type Command struct {
 	AutoCreatedDevices []*devices.Device   `json:"autocreated_devices"`
 	CapAdd             []string            `json:"cap_add"`
 	CapDrop            []string            `json:"cap_drop"`
+	VethPrefix         string              `json:"veth_prefix"`
 
 	Terminal     Terminal `json:"-"`             // standard or tty terminal
 	Console      string   `json:"-"`             // dev/console path

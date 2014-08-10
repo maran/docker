@@ -32,6 +32,14 @@ func compareRandomizedStrings(a, b, c, d string) error {
 	}
 	return fmt.Errorf("strings don't match")
 }
+func TestVethPrefix(t *testing.T) {
+	if _, _, err := parse(t, "--vethprefix thisistoolong"); err == nil {
+		t.Fatalf("Error parsing vethprefix. `--vethprefix thisistoolong` should be an error but is not:", err)
+	}
+	if _, _, err := parse(t, "--vethprefix eth"); err != nil {
+		t.Fatalf("Error parsing vethprefix. `--vethprefix test` should be valid but it's not:", err)
+	}
+}
 
 func TestParseRunLinks(t *testing.T) {
 	if _, hostConfig := mustParse(t, "--link a:b"); len(hostConfig.Links) == 0 || hostConfig.Links[0] != "a:b" {
